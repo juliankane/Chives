@@ -12,7 +12,8 @@
   "type": "commonjs",
   "dependencies": {
     "discord.js": "^14.18.0",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "python-shell": "^5.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

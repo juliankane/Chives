@@ -1,0 +1,37 @@
+{
+  "locations": [
+    {
+      "label": "New location...",
+      "value": "default"
+    },
+    {
+      "label": "World of Warcraft",
+      "value": "world of warcraft"
+    },
+    {
+      "label": "xcvcxzcv",
+      "value": "xcvcxzcv",
+      "last_accessed": "2025-03-21T17:09:51.987Z"
+    }
+  ],
+  "eventTypes": [
+    {
+      "label": "New event...",
+      "value": "default"
+    },
+    {
+      "label": "Trolling",
+      "value": "trolling"
+    },
+    {
+      "label": "sadfs",
+      "value": "sadfs",
+      "last_accessed": "2025-03-21T16:57:00.221Z"
+    },
+    {
+      "label": "asdf",
+      "value": "asdf",
+      "last_accessed": "2025-03-21T16:58:52.475Z"
+    }
+  ]
+}
