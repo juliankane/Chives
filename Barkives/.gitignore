@@ -11,8 +11,8 @@ node_modules/
 config.json
 botsettings.json
 settings.json
-cache/gld-configs/
-cache/lg/
+cache/gld-configs/*
+cache/lg/*
 
 # Debug or log files
 debug.log
