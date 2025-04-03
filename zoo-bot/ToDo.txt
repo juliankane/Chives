@@ -1,0 +1,40 @@
+Features
+ * Make anon log post
+ * Add a thumbnail - For anon post replace picture with Barkive picture
+ * Icons for games - search for game Icons
+ * Ensure data protection on error or restart
+ * Reassess Required fields 
+ * Reassess Award - Report system
+    Currently mainly for show - add a field Total Points to users in the database
+        If award or report - add or remove total points
+            Add amount of points available to a user a day to give or take away from someone
+                - This will require a persistent cache that gets dumped at the end of the day 12 - 12 p.m. 
+                - Reset at ---- 11:59 p.m. E.S.T
+                - Store points as serialized value (?)
+                - Add field for Award or Report flag in Logs ( see how many reports or rewards a member has given )
+                - 
+* Set required fields for users, event description, and details
+* Move
+    Award - Report to Subcommands ( opens up another actionRow to be used )
+        For these subcommands -> How many points they would like to deduct or award to a member
+        
+* Let a user know how many points they have to play aroundd with
+* Delete ephemeral messages after X amount of time
+* Command to show how many points someone has
+* Command to show how many points they have left for the day
+
+
+
+Quality Features
+ * Create nice description for Barkive
+ * - establish coming soon website
+
+
+Code Cleanup
+ * Move all prompt messages to config file for easier adjustments
+ * 
+
+Bug Fixes
+ Possible
+ * Look at time in footer
+* Look at log-bot-config command (allow for just me to use it)

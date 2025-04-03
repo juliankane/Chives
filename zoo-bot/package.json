@@ -1,10 +1,16 @@
 {
-  "name": "zoo-bot",
+  "name": "barkives",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "_moduleAliases": {
+    "@cache": "./cache/CacheManager.js",
+    "@utility/Log.js": "./commands/utility/Log.js",
+    "@constants": "./constants.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "send-logs": "python3 ./process_transactions.py"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +19,9 @@
   "dependencies": {
     "discord.js": "^14.18.0",
     "dotenv": "^16.4.7",
-    "python-shell": "^5.0.0"
+    "module-alias": "^2.2.3",
+    "python-shell": "^5.0.0",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

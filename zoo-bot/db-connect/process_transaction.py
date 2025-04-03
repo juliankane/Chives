@@ -1,12 +1,15 @@
 import sys
 import json
 import mysql.connector
+import threading
 
-with open('config.json') as config_file:
-    config = json.load(config_file)
 
-def process_users(data):
+
+
+def process_transaction(data):
     try:
+        with open('config.json') as config_file:
+            config = json.load(config_file)
         conn = mysql.connector.connect(
             host=config['mysql']['host'],
             user=config['mysql']['user'],
@@ -16,21 +19,19 @@ def process_users(data):
         )
         cursor = conn.cursor()
         print("Successfully connected to database")
-        
+
     except mysql.connector.Error as err:
         print(f"Error connecting to database: {err}")
         sys.exit(1)
-
+    
     try:
-        users = data['users']
-        users_json = json.dumps(users)
+        logs_json = json.dumps(data)
 
-        for user in users:
-            print(f'User ID: {user['u_id']}, Username: {user['u_name']} received...')
-
-        cursor.callproc('insert_users', (users_json,))
+            
+        cursor.callproc('insertGuildLogs', (logs_json,))
         conn.commit()
-        print("Transaction committed successfully.")
+
+
     except Exception as e:
         print(f'Error occurred: {e}')
         sys.exit(1)  # Exit with an error code to terminate the proces
@@ -38,21 +39,18 @@ def process_users(data):
         cursor.close()
         conn.close()
 
-
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("No json file provided")
         sys.exit(1)
-    
+
     json_file = sys.argv[1]
+    print('JSON FOUND')
 
     try:
         with open(json_file) as file:
             data = json.load(file)
-            print("Received json Data:", data)
-            process_users(data)
+            process_transaction(data)
 
     except Exception as e:
         print(f"Error reading JSON file: {e}")
-
-
