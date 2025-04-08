@@ -1,4 +1,5 @@
 import sys
+import os
 import json
 import mysql.connector
 import multiprocessing as mp
@@ -9,11 +10,11 @@ def process_transaction(data):
         config = json.load(config_file)
 
     conn = mysql.connector.connect(
-        host=config['mysql']['host'],
-        user=config['mysql']['user'],
-        password=config['mysql']['password'],
-        database=config['mysql']['database'],
-        connection_timeout=config['mysql']['connection_timeout']
+        host=os.getenv('DB_HOST'),
+        user=os.getenv('DB_USER'),
+        password= os.getenv('DB_PASS'),
+        database=os.getenv('DB_NAME'),
+        connection_timeout=10
     )
     cursor = conn.cursor()
     print("Successfully connected to database")

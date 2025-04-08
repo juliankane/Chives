@@ -274,21 +274,21 @@ const CacheManager = {
 
 };
 
-// setInterval(() => {
-//     CacheManager.RESET_DAILY_COUNT()
-// }, 86400000); // 24 hours in milliseconds
+setInterval(() => {
+    CacheManager.RESET_DAILY_COUNT()
+}, 86400000); // 24 hours in milliseconds
 
-// // Dump logs to JSON every 6 hours (21600000ms)
-// setInterval(() => {
-//     CacheManager.dumpToJSON();
-// }, 21600000);  // 6 hours in milliseconds
+// Dump logs to JSON every 6 hours (21600000ms)
+setInterval(() => {
+    CacheManager.dumpToJSON();
+}, 21600000);  // 6 hours in milliseconds
 
-// // Send logs to the database one minute after dumping (i.e., 1 minute = 60000ms)
-// setInterval(() => {
-//     setTimeout(() => {
-//         CacheManager.sendLogsToDB();
-//     }, 60000);  // 1 minute after the dump
-// }, 21600000);  // 6 hours in milliseconds
+// Send logs to the database one minute after dumping (i.e., 1 minute = 60000ms)
+setInterval(() => {
+    setTimeout(() => {
+        CacheManager.sendLogsToDB();
+    }, 60000);  // 1 minute after the dump
+}, 21600000);  // 6 hours in milliseconds
 
 
 
