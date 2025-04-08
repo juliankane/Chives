@@ -1,0 +1,15 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Debug or log files
+debug.log
+*.log
+
+# System files
+.DS_Store
+
+
+# depreciated

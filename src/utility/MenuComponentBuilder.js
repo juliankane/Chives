@@ -3,16 +3,18 @@
 const { ActionRowBuilder, UserSelectMenuBuilder, ButtonBuilder, StringSelectMenuBuilder,
     StringSelectMenuOptionBuilder, ButtonStyle, TextInputStyle, TextInputBuilder, ModalBuilder } = require('discord.js');
 
-const { LogJS } = require('@constants');
-
-
-
+const { LogJS: {menu_strings} } = require('@constants');
 
 class MenuComponentBuilder {
     /** Init MenuComponentBuilder */
-    constructor(customIds = {}, guild_options = {}, guild_tags = []){
-       
+    constructor(customIds = {}, guild_options = {}, guild_tags = [], action_type = ""){
+
+ 
+        this.action_type = action_type;
         this.customIds = customIds;
+
+
+
         this.guild_events = guild_options.events; // Guild's saved events || []
         this.guild_locations = guild_options.locations; // Guild's saved locations || []
         this.guild_tags = guild_tags
@@ -33,23 +35,30 @@ class MenuComponentBuilder {
 
     createUserSelect(){
         /** Menu of all relavent members of the discord - maximum users displayed = 25 */
-        return new UserSelectMenuBuilder().setCustomId(this.customIds.user).setPlaceholder('Select user(s)')
+        return new UserSelectMenuBuilder().setCustomId(this.customIds.user).setPlaceholder(menu_strings.usr_sp)
             .setMinValues(1).setMaxValues(25);
     }
 
     createPointActionSelect(selected_option = ""){
-        /** Menu Award or Report
-         * .setDefault if user selected the option previously | (selected_option === '') = false
-         */
-        let _options = [   
-            new StringSelectMenuOptionBuilder().setEmoji('🏆').setLabel('Award').setValue('award')
-                .setDescription('Award a member of the discord.').setDefault(selected_option === 'award'),
-            new StringSelectMenuOptionBuilder().setEmoji('🚨').setLabel('Report')
-                .setDescription('Report a member of the discord.').setValue('report').setDefault( selected_option === 'report')]   
 
+        if (this.customIds.pointAction === null){ // menu wasn't created
+            return null;
+        } 
 
-        return new StringSelectMenuBuilder().setCustomId((this.customIds.pointAction)).setPlaceholder(('Award or Report?'))
-            .addOptions(_options);
+        let _options = [10, 25, 50, 100].map(value =>
+            new StringSelectMenuOptionBuilder()
+                .setLabel(`${value} Points`) // Display text
+                .setValue(value.toString())  // Set the value as a string
+                .setDefault(selected_option === value.toString()) // Set default selection
+                .setEmoji(menu_strings.poiact_arrows(this.action_type))
+        );
+        
+
+        console.log(this.action_type)
+        return new StringSelectMenuBuilder()
+                .setCustomId(this.customIds.pointAction)
+                .setPlaceholder(menu_strings.poiact_sp(this.action_type))
+                .addOptions(_options);
     }
 
     createEventNameSelect(new_option = ""){
@@ -72,8 +81,8 @@ class MenuComponentBuilder {
         }
 
         _options.push(new StringSelectMenuOptionBuilder()
-            .setLabel("New Event...")
-            .setValue('new').setEmoji('✨'))
+            .setLabel(menu_strings.evnt_new_sl)
+            .setValue('new').setEmoji(menu_strings.new_emoji))
            
     
         return new StringSelectMenuBuilder().setCustomId((this.customIds.eventName)).setPlaceholder(('Describe the event in one or two words...'))
@@ -100,23 +109,23 @@ class MenuComponentBuilder {
         }                   
 
         _options.push(new StringSelectMenuOptionBuilder()
-            .setLabel("New Location...")
+            .setLabel(menu_strings.loc_new_sl)
             .setValue('new')
-            .setEmoji('✨'));
+            .setEmoji(menu_strings.new_emoji));
 
-        return new StringSelectMenuBuilder().setCustomId((this.customIds.locationName)).setPlaceholder(('Where did the event take place?'))
+        return new StringSelectMenuBuilder().setCustomId((this.customIds.locationName)).setPlaceholder((menu_strings.loc_sp))
             .addOptions(_options);
         
     }
 
     createEntryButton(disable = true){
         /** Submit Button */
-        return new ButtonBuilder().setCustomId(this.customIds.submit).setLabel('Begin log entry').setStyle(ButtonStyle.Primary).setDisabled(disable);
+        return new ButtonBuilder().setCustomId(this.customIds.submit).setLabel(menu_strings.submit_bl).setStyle(ButtonStyle.Primary).setDisabled(disable);
     }
 
     createCancelButton(){
         /** Cancel Button  */
-        return new ButtonBuilder().setCustomId(this.customIds.cancel).setLabel('Cancel').setStyle(ButtonStyle.Secondary);
+        return new ButtonBuilder().setCustomId(this.customIds.cancel).setLabel(menu_strings.cancel_bl).setStyle(ButtonStyle.Secondary);
     }
 
     createComponents(){
@@ -124,11 +133,14 @@ class MenuComponentBuilder {
          *      Returns action rows to reply to the interaction
          */
         let row0 = new ActionRowBuilder().addComponents(this.UserSelect) // row 1 - user select menu
-        let row1 = new ActionRowBuilder().addComponents(this.PointActionSelect) // row 2 - point action select menu 
         let row2 = new ActionRowBuilder().addComponents(this.EventNameSelect) // row 3 - event name selecc menu
         let row3 = new ActionRowBuilder().addComponents(this.LocationNameSelect) // row 4 - location name select menu
         let row4 = new ActionRowBuilder().addComponents(this.EntryButton, this.CancelButton) // row 5 - Submit, Cancel buttons
-        this.ActionRows = [row0, row1, row2, row3, row4];
+
+    
+        this.ActionRows = [row0, row2, row3, row4];
+        
+
         return this.ActionRows;
     }
 
@@ -158,7 +170,6 @@ class MenuComponentBuilder {
     }
 
    
-
     async showModal(interaction, modal, modalId = ""){
         //**  Show a modal and return input fields */
         await interaction.showModal(modal); // Display the modal
@@ -177,7 +188,6 @@ class MenuComponentBuilder {
             }
         
         } catch (error){ 
-            console.error(`Modal with ID ${modalId} was never submitted`);
             return null;
         }; // err
     }

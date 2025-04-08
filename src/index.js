@@ -35,4 +35,7 @@ for (const file of eventFiles) {
     }
 }
 
-client.login(token);
+
+
+client.login(process.env.BOT_TOKEN);
+console.log('App has successfully logged in!')

@@ -5,7 +5,7 @@
   "main": "index.js",
   "_moduleAliases": {
     "@cache": "./cache/CacheManager.js",
-    "@utility/Log.js": "./commands/utility/Log.js",
+    "@utility/Log.js": "./utility/Log.js",
     "@constants": "./constants.js"
   },
   "scripts": {

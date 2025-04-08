@@ -1,0 +1,51 @@
+
+.git/
+
+
+# Node modules
+src/node_modules/
+
+# Environment variables
+.env
+
+# Configuration files that might contain sensitive data
+**/config.json
+/settings.json
+package-lock.json
+
+# Dependency directories
+src/node_modules/
+
+
+
+
+
+
+# Temp Directories
+src/cache/gld-configs/
+srsc/cache/lg/
+
+
+
+
+
+
+# VS_CODE
+.vscode/
+
+
+
+# Debug or log files
+debug.log
+*.log
+
+
+
+# System files
+.DS_Store
+
+ToDo.txt
+
+orts (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+

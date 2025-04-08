@@ -18,7 +18,6 @@ for (const file of commandFiles) {
     }
 }
 
-// Construct and prepare an instance of the REST module
 const rest = new REST().setToken(token);
 
 (async () => {

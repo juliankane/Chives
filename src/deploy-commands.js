@@ -19,14 +19,14 @@ for (const file of commandFiles) {
 }
 
 // Construct and prepare an instance of the REST module
-const rest = new REST().setToken(token);
+const rest = new REST().setToken(process.env.BOT_TOKEN);
 
 (async () => {
     try {
         console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
         const data = await rest.put(
-            Routes.applicationCommands(clientId),
+            Routes.applicationCommands(process.env.CLIENT_ID),
             { body: commands },
         );
 
