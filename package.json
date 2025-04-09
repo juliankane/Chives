@@ -2,7 +2,7 @@
   "name": "barkives",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "/src/index.js",
   "_moduleAliases": {
     "@cache": "./src/cache/CacheManager.js",
     "@utility/Log.js": "./src/utility/Log.js",
