@@ -10,12 +10,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-        
-        
-      - name: Debug Environment Variables
-        run:
-          echo "REMOTE_HOST: $REMOTE_HOST"
-          echo "PRIVATE_KEY: $PRIVATE_KEY"
+   
+      
 
       - name: Check if deploy script exists
         run: 
@@ -30,6 +26,9 @@ jobs:
           PRIVATE_KEY: ${{ secrets.REMOTE_HOST_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         run: 
+       	  echo "$PRIVATE_KEY"
+       	  echo "$REMOTE_HOST"
+        
           echo "$PRIVATE_KEY" > private_key.pem
           chmod 600 private_key.pem
           ssh -o StrictHostKeyChecking=no -i private_key.pem ec2-user@$REMOTE_HOST 'bash -s' < deploy-scripts/deploy_main.sh
