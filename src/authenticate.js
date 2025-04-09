@@ -4,11 +4,6 @@ import {
 } from "@aws-sdk/client-secrets-manager";
   
 
-
-
-
-
-
 const secret_name = "var/chives/bot_creds";
 
 const client = new SecretsManagerClient({
