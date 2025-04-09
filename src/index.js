@@ -2,7 +2,6 @@ require('module-alias/register');
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits} = require('discord.js');
-const CacheManager = require('@cache');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] });
 
@@ -34,6 +33,15 @@ for (const file of eventFiles) {
     }
 }
 
+
+// graceful shutdown for pm2
+process.on('SIGINT', function() {
+    db.stop(function(err) {
+      process.exit(err ? 1 : 0)
+    })
+ })
+ 
+ 
 
 
 client.login(process.env.BOT_TOKEN);
