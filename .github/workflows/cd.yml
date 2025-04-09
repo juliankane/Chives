@@ -26,8 +26,6 @@ jobs:
           PRIVATE_KEY: ${{ secrets.REMOTE_HOST_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         run: 
-       	  echo "$PRIVATE_KEY"
-       	  echo "$REMOTE_HOST"
         
           echo "$PRIVATE_KEY" > private_key.pem
           chmod 600 private_key.pem
