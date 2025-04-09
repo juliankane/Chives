@@ -1,0 +1,20 @@
+name: CI-MAIN
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Deploy to main
+        env: 
+          PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+        run: 
+          echo "$PRIVATE_KEY" > private_key.pem
+          chmod 600 private_key.pem
+          ssh -o StrictHostKeyChecking=no -i private_key.pem ec2-user@$EC2_HOST 'bash -s' < deploy_script.sh
