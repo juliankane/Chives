@@ -6,4 +6,9 @@ git fetch origin
 git reset --hard origin/main
 git pull origin main
 npm install
-pm2 restart index
+
+if  pm2 pid index > /dev/null; then
+    pm2 restart index
+else
+    pm2 start index
+fi 
