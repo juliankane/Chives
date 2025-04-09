@@ -14,7 +14,7 @@ jobs:
       
 
       - name: Check if deploy script exists
-        run: 
+        run: |
           ls -l deploy-scripts
           cat deploy-scripts/deploy_main.sh
         
@@ -25,9 +25,9 @@ jobs:
         env: 
           PRIVATE_KEY: ${{ secrets.REMOTE_HOST_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        run: 
+        run: |
         
-          echo "$PRIVATE_KEY" > private_key.pem
+          echo "$PRIVATE_KEY"  private_key.pem
           chmod 600 private_key.pem
           ssh -o StrictHostKeyChecking=no -i private_key.pem ec2-user@$REMOTE_HOST 'bash -s' < deploy-scripts/deploy_main.sh
 
