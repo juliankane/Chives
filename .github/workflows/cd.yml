@@ -10,6 +10,23 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
+        
+        
+        
+      - name: Debug Env Variables
+      - name: Debug Environment Variables
+        run: |
+          echo "REMOTE_HOST: $REMOTE_HOST"
+          echo "PRIVATE_KEY: $PRIVATE_KEY"
+
+      - name: Check if deploy script exists
+        run: |
+          ls -l deploy-scripts
+          cat deploy-scripts/deploy_main.sh
+        
+        
+        
+       
       - name: Deploy to main
         env: 
           PRIVATE_KEY: ${{ secrets.REMOTE_HOST_KEY }}
