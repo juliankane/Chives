@@ -17,4 +17,5 @@ jobs:
         run: 
           echo "$PRIVATE_KEY" > private_key.pem
           chmod 600 private_key.pem
-          ssh -o StrictHostKeyChecking=no -i private_key.pem ec2-user@$EC2_HOST 'bash -s' < deploy_script.sh
+          ssh -o StrictHostKeyChecking=no -i private_key.pem ec2-user@$EC2_HOST 'bash -s' < deploy-scripts/deploy_main.sh
+
