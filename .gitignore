@@ -3,15 +3,10 @@
 
 
 # Node modules
-src/node_modules/
+node_modules/
 
 # Environment variables
 .env
-
-# Configuration files that might contain sensitive data
-**/config.json
-/settings.json
-package-lock.json
 
 # Dependency directories
 src/node_modules/
@@ -22,8 +17,8 @@ src/node_modules/
 
 
 # Temp Directories
-src/cache/gld-configs/
-srsc/cache/lg/
+./src/cache/gld-configs/
+./src/cache/lg/
 
 
 
@@ -45,7 +40,4 @@ debug.log
 .DS_Store
 
 ToDo.txt
-
-orts (https://nodejs.org/api/report.html)
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 

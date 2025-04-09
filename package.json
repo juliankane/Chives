@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "_moduleAliases": {
-    "@cache": "./cache/CacheManager.js",
-    "@utility/Log.js": "./utility/Log.js",
-    "@constants": "./constants.js"
+    "@cache": "./src/cache/CacheManager.js",
+    "@utility/Log.js": "./src/utility/Log.js",
+    "@constants": "./src/constants.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
