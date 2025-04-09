@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits} = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] });
-const secret = require('authenticate.js');
+const secret = require('./authenticate.js');
 const token = secret.BOT_TOKEN;
 
 client.commands = new Collection();
