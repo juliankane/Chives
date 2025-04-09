@@ -9,6 +9,7 @@
     "@constants": "./src/constants.js"
   },
   "scripts": {
+    "install": "echo 'Installing python dependencies....' && pip install -r requirements.txt",
     "test": "echo \"Error: no test specified\" && exit 1",
     "send-logs": "python3 ./process_transactions.py"
   },
@@ -17,11 +18,13 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "aws-sdk": "^2.1692.0",
     "discord.js": "^14.18.0",
     "dotenv": "^16.4.7",
     "module-alias": "^2.2.3",
     "python-shell": "^5.0.0",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

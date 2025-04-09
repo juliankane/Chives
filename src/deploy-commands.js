@@ -6,6 +6,11 @@ const path = require('node:path');
 const commands = [];
 const foldersPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(foldersPath).filter(file => file.endsWith('.js'));
+const secret = require('./authenticate.js');
+const guildId = secret.GUILD_ID;
+const clientId = secret.CLIENT_ID;
+
+
 
 for (const file of commandFiles) {
     const filePath = path.join(foldersPath, file);
@@ -25,7 +30,7 @@ const rest = new REST().setToken(process.env.BOT_TOKEN);
         console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
         const data = await rest.put(
-            Routes.applicationCommands(process.env.CLIENT_ID),
+            Routes.applicationCommands(clientId),
             { body: commands },
         );
 
