@@ -9,10 +9,10 @@ node_modules/
 .env
 
 # Dependency directories
-src/node_modules/
+./src/node_modules/
 
 
-src/local-deploy-commands.js
+./src/local-deploy-commands.js
 
 
 # Temp Directories
