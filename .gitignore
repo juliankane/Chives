@@ -12,8 +12,7 @@ node_modules/
 src/node_modules/
 
 
-
-
+src/local-deploy-commands.js
 
 
 # Temp Directories
