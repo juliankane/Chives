@@ -5,35 +5,15 @@ import mysql.connector
 import threading
 lock = threading.Lock()
 
-from botocore.exceptions import ClientError
-import boto3
 
-def get_secret():
-    secret_name = "var/chives/mysql"
-    region_name = "us-east-1"
-
-    session = boto3.session.Session()
-    client = session.client(
-        service_name='secretsmanager',
-        region_name=region_name
-    )
-
-    try:
-        get_secret_value_response = client.get_secret_value(
-            SecretId=secret_name
-        )
-    except ClientError as e:
-        raise e
-
-    secret = get_secret_value_response['SecretString']
-    return secret
-
+import db_auth
+s = db_auth.get_secret()
 
 
 def process_users(data):
     with lock:
         try:
-            s = get_secret()
+            print("connection to database")
             conn = mysql.connector.connect( 
                 host= s.host,
                 user= s.username,

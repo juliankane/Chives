@@ -1,0 +1,26 @@
+{
+  "guilds": {
+    "1345189490788143124": {
+      "guild_name": "",
+      "member_daily": {
+        "173928626889162753": {
+          "award": 1,
+          "report": 1
+        }
+      },
+      "settings": {
+        "text_channel": null,
+        "authorized_roles": null,
+        "daily_limit": 10
+      },
+      "selection_options": {
+        "events": [
+          "e"
+        ],
+        "locations": [
+          "e"
+        ]
+      }
+    }
+  }
+}

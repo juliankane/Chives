@@ -2,40 +2,22 @@ import sys
 import os
 import json
 import mysql.connector
+import logging
 
-import boto3
-from botocore.exceptions import ClientError
+logging.basicConfig(level=logging.INFO)
 
-
-def get_secret():
-    secret_name = "var/chives/mysql"
-    region_name = "us-east-1"
-
-    session = boto3.session.Session()
-    client = session.client(
-        service_name='secretsmanager',
-        region_name=region_name
-    )
-
-    try:
-        get_secret_value_response = client.get_secret_value(
-            SecretId=secret_name
-        )
-    except ClientError as e:
-        raise e
-
-    secret = get_secret_value_response['SecretString']
-    return secret
+import db_auth
+s = db_auth.get_secret()
 
 
 def process_transaction(data):
-    s = get_secret()
+    logging.info(s)
     conn = mysql.connector.connect( 
-        host= s.host,
-        user= s.username,
-        password= s.password,
-        database= s.dbname,
-        port= s.port,
+        host = s['host'] ,
+        user = s['username'],
+        password = s['password'],
+        database = s['dbname'],
+        port = s['port'],
         connection_timeout=10
     )
 
