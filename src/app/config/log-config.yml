@@ -1,0 +1,82 @@
+menu_components:
+  row1:
+      typeId: UserSelect
+      custom_id: user
+      placeholder: "❗ Select User(s)"
+      min_values: 1
+      max_values: 25
+  row2:
+      typeId: StringSelect
+      custom_id: event
+      placeholder: "❗ Reason for log.. E.g. Trolling"
+      options: 
+        - label: "Other..."
+          value: "new"
+        - label: "---"
+          value: "no-value"
+  row3:
+      typeId: StringSelect
+      custom_id: location
+      placeholder: "Location ?"
+      options:
+        - label: "Other..."
+          value: "new"
+        - label: "---"
+          value: "no-value"
+  row4:
+    components:
+      - typeId: Button
+        custom_id: details
+        emoji: '🗒️'
+        label: "Write Details"
+        style: 1
+
+      - typeId: Button 
+        custom_id: submit
+        label: "Submit"
+        style: 3
+        
+      - typeId: Button
+        custom_id: cancel
+        label: "Cancel"
+        style: 4
+
+modals: 
+  event_modal:
+    title: "New Event"
+    custom_id: "event_modal"
+    components:
+     - type: 1
+       components: 
+        - custom_id: event
+          type: 4
+          style: 1
+          label: "New Event"
+          placeholder: "Write in a new event..."
+
+  location_modal:
+    title: "New Location"
+    custom_id: "location_modal"
+    components:
+      - type: 1
+        components:
+         - custom_id: location
+           type: 4 
+           style: 1
+           label: "New Location"
+           placeholder: "Write in a new location..."
+
+  details_modal:
+    title: "Details"
+    custom_id: "details_modal"
+    components:
+      - type: 1
+        components:
+         - custom_id: "details"
+           type: 4
+           style: 2
+           label: "Write in details"
+           placeholder: "Hello"
+
+
+

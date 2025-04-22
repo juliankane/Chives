@@ -1,42 +1,10 @@
 
-.git/
+**/node_modules/
+**/gld-configs/
+**/lgs/
+**/.git/
+**/.vscode/
 
 
-# Node modules
-node_modules/
-
-# Environment variables
 .env
-
-# Dependency directories
-./src/node_modules/
-
-
-./src/local-deploy-commands.js
-
-
-# Temp Directories
-./src/cache/gld-configs/
-./src/cache/lg/
-
-
-
-
-
-
-# VS_CODE
-.vscode/
-
-
-
-# Debug or log files
-debug.log
-*.log
-
-
-
-# System files
-.DS_Store
-
-ToDo.txt
 

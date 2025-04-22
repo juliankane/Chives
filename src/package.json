@@ -1,0 +1,19 @@
+{
+  "name": "barkives",
+  "private":true,
+  "workspaces": [
+    "app",
+    "cache"
+  ],
+  "_moduleAliases": {
+    "@secretsjs": "shared/secrets.mjs"
+  },
+
+  "dependencies":{
+	  "module-alias": "^2.2.3" 
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "eslint": "^9.21.0"
+  }
+}
